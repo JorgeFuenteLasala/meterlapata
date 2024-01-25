@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>Meterlapata.com::: El mayor buscador de animales en adopción</title>
+    <meta name="description" content="El mayor buscador de animales en adopción">
+    <meta name="keywords" content="adoptar, adopción, perros, gatos, buscador, animales en adopción">
+    <meta name="author" content="Jorge Fuente">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5TFQ1MLYSC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-5TFQ1MLYSC');
+    </script>
+
+  </head>
+  <body id="bodyMain" onload="resetForm()" class="status-home">
+     <!-- Switch appearance .status-home (default), .status-fav and .status-search-->
+    <header id="header" class="">
+      <div class="header-content">
+        <a href="https://meterlapata.com" class="header-logo no-space"><img src="img/logo-neg.svg" height="32"></a>
+        <div class="header-search">
+          <a href="https://meterlapata.com" class="no-space"><img src="img/imago.svg" height="32"></a>
+        </div>
+        <a class="icon header-backarrow" onclick="backToSearch()"><span>Volver</span></a>
+        <h2 id="favCounter" class="header-fav-counter mobile-only"></h2>
+        <button type="button" id="headerFavs" class="header-favorites inactive" onclick="changeToFav()">
+          <a id="favFrame" class="icon header-like">Favoritos<span id="favNumber" class="header-counter"></span></a>
+        </button>    
+      </div>
+    </header>
+    
+    <main id="home-container" class="home-container">
+      <div class="home-content">
+        <h1 class="home-title">El mayor buscador de animales en adopción</h1>
+        <form class="home-form" id="searchForm">
+          <div class="search-container">
+            <button type="button" id="speciesSelector" class="search-select icon hidden" onclick="showSpecies();">Especie</button>
+            <ul id="speciesList" class="home-dupla">
+              <li><input type="radio" id="selector-dog" name="species" value="dog" /><label class="search-selector-label" for="selector-dog">Perros</label> </li>
+              <li><input type="radio" id="selector-cat" name="species" value="cat"  /><label class="search-selector-label" for="selector-cat">Gatos</label></li>
+            </ul>
+          </div>
+          
+          <div class="search-container">
+            <button type="button" id="homeSelector" class="search-select icon" onclick="showLocations();">Dónde buscas</button>
+            <ul id="locationList" class="search-selector">
+              <li><input type="radio" id="selector-andalucia" class="search-selector-input" name="locations" value="andalucia" /><label for="selector-andalucia" class="search-selector-label">Andalucía</label> </li>
+              <li><input type="radio" id="selector-aragon" class="search-selector-input" name="locations" value="aragon" /><label for="selector-aragon" class="search-selector-label">Aragón</label> </li>
+              <li><input type="radio" id="selector-canarias" class="search-selector-input" name="locations" value="canarias" /><label for="selector-canarias" class="search-selector-label">Canarias</label> </li>
+              <li><input type="radio" id="selector-cmancha" class="search-selector-input" name="locations" value="cmancha" /><label for="selector-cmancha" class="search-selector-label">Castilla La Mancha</label> </li>
+              <li><input type="radio" id="selector-cleon" class="search-selector-input" name="locations" value="cleon" /><label for="selector-cleon" class="search-selector-label">Castilla y León</label> </li>
+              <li><input type="radio" id="selector-cataluna" class="search-selector-input" name="locations" value="cataluna" /><label for="selector-cataluna" class="search-selector-label">Cataluña</label> </li>
+              <li><input type="radio" id="selector-valencia" class="search-selector-input" name="locations" value="valencia" /><label for="selector-valencia" class="search-selector-label">Comunidad Valenciana</label> </li>
+              <li><input type="radio" id="selector-extremadura" class="search-selector-input" name="locations" value="extremadura" /><label for="selector-extremadura" class="search-selector-label">Extremadura</label> </li>
+              <li><input type="radio" id="selector-galicia" class="search-selector-input" name="locations" value="galicia" /><label for="selector-galicia" class="search-selector-label">Galicia</label> </li>
+              <li><input type="radio" id="selector-rioja" class="search-selector-input" name="locations" value="rioja" /><label for="selector-rioja" class="search-selector-label">La Rioja</label> </li>
+              <li><input type="radio" id="selector-madrid" class="search-selector-input" name="locations" value="madrid" /><label for="selector-madrid" class="search-selector-label">Madrid</label> </li>
+              <li><input type="radio" id="selector-murcia" class="search-selector-input" name="locations" value="murcia" /><label for="selector-murcia" class="search-selector-label">Murcia</label> </li>
+              <li><input type="radio" id="selector-navarra" class="search-selector-input" name="locations" value="navarra" /><label for="selector-navarra" class="search-selector-label">Navarra</label> </li>
+              <li><input type="radio" id="selector-pvasco" class="search-selector-input" name="locations" value="pvasco" /><label for="selector-pvasco" class="search-selector-label">País Vasco</label> </li>
+            </ul>
+          </div>
+
+          <button type="button" class="button btn_primary" id="search-button" onclick="executeSearch();">Buscar</button>
+
+        </form>
+        
+        <h2 class="home-subtitle"><span id="homeCounter"></span> perros y gatos buscan un hogar</h2>
+
+      </div>
+    </main>
+
+
+    <section id="result-container" class="result-container">
+    </section>
+
+    <section id="fav-container" class="fav-container">
+    </section>
+
+    <section id="cookiesMessage" class="cookies-message" hidden>
+      <p>Este sitio utiliza cookies necesarias para su funcionamiento, así como analíticas con las que entender mejor cómo nuestros usuarios utilizan el sitio. Descubre más sobre <a href="cookies.html">cómo utilizamos las cookies</a></p>
+      <div class="cookies-buttons">
+        <button onclick="acceptCookies()" class="cookies-buttons_main">Aceptar cookies</button>
+      </div>
+      
+    </section>
+
+    <footer class="captions-container"> 
+      <div class="captions">
+        <span>© Jorge Fuente 2022</span>
+        <span class="footer-links"><a href="condiciones.html">Condiciones</a><a href="privacidad.html">Privacidad</a><a href="cookies.html">Cookies</a> </span>
+      </div>
+    </footer>
+
+
+
+    <script type="text/javascript" src="js/search.js"></script>
+  </body>
+</html>
